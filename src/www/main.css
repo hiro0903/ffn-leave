@@ -8,3 +8,26 @@ html {
 body {
 
 }
+
+#main { width: 100vw; height: 100vh; padding: 20px; overflow: hidden; position: relative; box-sizing: border-box; background-color: #DFDBD8; 
+        transition: padding 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5ms; }
+#main.header-on { padding-top: 90px; }
+#main.navbar-on { padding-left: 200px; }
+
+/** TOP HEADER **/
+.header-on  .top-header { top: 0; }
+.header-off .top-header { top: -100%; }
+
+.top-header { height: 70px; width: 100%; z-index: 9; position: absolute; left: 0; display: block; 
+              transition: top 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
+
+
+/** SIDE NAV **/
+.navbar-on  .side-nav { left: 0; }
+.navbar-off .side-nav { left: -100%; }
+
+.side-nav { width: 180px; height: 100%; z-index: 8; position: absolute; top: 0; display: block; 
+            transition: top 1s cubic-bezier(0.23, 1, 0.32, 1) 10ms; }
+
+/** CONTENT AREA **/
+.content-area { background-color: #DFDBD8; width: 100%; height: 100%; z-index: 0; }

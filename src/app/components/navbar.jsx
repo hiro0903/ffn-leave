@@ -4,27 +4,25 @@ var Paper = mui.Paper;
 var Navbar = React.createClass({
 
   render: function() {
-
     var containerStyle = {
-        width      : '180px',
-        height     : '100%',
-        display    : 'block',
-        position   : 'absolute',
-        top        : '0px',
-        left       : '0px',
-        paddingTop : '180px',
-        zIndex     : 8
+        width    : '100%',
+        height   : '100%',
+        display  : 'block',
+        padding  : '90px 24px 0 24px',
     };
-
     return (
-      <Paper style={containerStyle} zDepth={1}>
-        <div>HOME</div>
-        <div>Notice</div>
-        <div>Calendar</div>
-        <div>Leaves</div>
-        <div>Search</div>
-        <div>Tools</div>
-      </Paper>
+      <nav className="side-nav">
+          <Paper zDepth={1} style={containerStyle}>
+            <ul>
+                <li>HOME</li>
+                <li>Notice</li>
+                <li>Calendar</li>
+                <li>Leaves</li>
+                <li>Search</li>
+                <li>Tools</li>
+            </ul>
+          </Paper>
+      </nav>
     );
   },
 

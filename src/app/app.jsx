@@ -6,6 +6,8 @@
   //Needed for React Developer Tools
   window.React = React;
 
+  window.FFN = {};
+
   //Needed for onTouchTap
   //Can go away when react 1.0 release
   //Check this repo:
@@ -14,6 +16,6 @@
 
   // Render the main app react component into the document body. 
   // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
-  React.render(<Main />, document.body);
+  FFN.app = React.render(<Main />, document.body);
 
 })();

@@ -12,20 +12,19 @@ var Header = React.createClass({
 
     var containerStyle = {
         width    : '100%',
-        height   : '70px',
+        height   : '100%',
         display  : 'block',
-        position : 'absolute',
-        top      : '0px',
-        left     : '0px',
-        zIndex   : 9
+        padding  : '12px 20px',
     };
 
     return (
-      <Paper style={containerStyle} zDepth={1}>
-        <span>Friendfinder logo</span>
-        <RaisedButton label="Create New" primary={true} onTouchTap={this._handleTouchTap} />
-        <User user="Liang Yeh" />
-      </Paper>
+      <header className="top-header">
+        <Paper style={containerStyle} zDepth={1} >
+          <span>Friendfinder logo</span>
+          <RaisedButton label="Create New" primary={true} onTouchTap={this._handleTouchTap} />
+          <User user="Liang Yeh" />
+        </Paper>
+      </header>
     );
   },
 
