@@ -15,7 +15,9 @@ var DEBUG = require('../js/debug');
 var Main = React.createClass({
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object
+    muiTheme: React.PropTypes.object,
+    displayHeader: React.PropTypes.bool,
+    displayNavbar: React.PropTypes.bool
   },
   getInitialState: function () {
       return {
@@ -26,7 +28,9 @@ var Main = React.createClass({
   },
   getChildContext: function() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme()
+      muiTheme: ThemeManager.getCurrentTheme(),
+      displayHeader: this.state.displayHeader,
+      displayNavbar: this.state.displayNavbar
     };
   },
 
@@ -72,7 +76,7 @@ var Main = React.createClass({
           displayNavbar : true
       }); 
 
-      console.log('client init...');
+      console.log('client init...'); console.log(this.context.displayNavbar);
   },
 
   _toggleHeader : function() { this.setState({ displayHeader: !this.state.displayHeader }); },

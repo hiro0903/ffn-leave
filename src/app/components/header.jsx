@@ -13,16 +13,17 @@ var Header = React.createClass({
     var containerStyle = {
         width    : '100%',
         height   : '100%',
-        display  : 'block',
         padding  : '12px 20px',
     };
 
     return (
       <header className="top-header">
         <Paper style={containerStyle} zDepth={1} >
-          <span>Friendfinder logo</span>
-          <RaisedButton label="Create New" primary={true} onTouchTap={this._handleTouchTap} />
-          <User user="Liang Yeh" />
+          <div className="left">Friendfinder logo</div>
+          <div className="right">
+            <RaisedButton label="Create New" primary={true} onTouchTap={this._handleTouchTap} />
+            <User user="Liang Yeh" />
+          </div>
         </Paper>
       </header>
     );
