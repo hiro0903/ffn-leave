@@ -14,11 +14,6 @@ var Content = require('./content.jsx');
 var DEBUG = require('../js/debug');
 var Main = React.createClass({
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-    displayHeader: React.PropTypes.bool,
-    displayNavbar: React.PropTypes.bool
-  },
   getInitialState: function () {
       return {
           displayHeader : false,
@@ -26,11 +21,20 @@ var Main = React.createClass({
           debug         : DEBUG
       };
   },
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+    displayHeader: React.PropTypes.bool,
+    displayNavbar: React.PropTypes.bool,
+    lightbox : React.PropTypes.func
+  },
+
   getChildContext: function() {
     return {
       muiTheme: ThemeManager.getCurrentTheme(),
       displayHeader: this.state.displayHeader,
-      displayNavbar: this.state.displayNavbar
+      displayNavbar: this.state.displayNavbar,
+      lightbox: this._lightbox
     };
   },
 
@@ -88,6 +92,7 @@ var Main = React.createClass({
           lightboxAction :  option.action  || []
       }
     this.setState(lb);
+    this.refs.lightbox.show();
   },
   render: function() {
 

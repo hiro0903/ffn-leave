@@ -1,3 +1,8 @@
+/**
+ * 主要顯示資料view的 container
+ * @module content.jsx
+ */
+
 var React = require('react');
 var Content = React.createClass({
 
