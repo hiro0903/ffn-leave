@@ -41,7 +41,8 @@ var HeaderButton = React.createClass({
             position : 'relative'
         },
         menuStyle = {
-            top : '100%'
+            top : '100%',
+            transform : 'translate3d( 0, 5px, 0)'
         }
 
     return (

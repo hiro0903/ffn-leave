@@ -1,6 +1,7 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
 var React = require('react');
+var Backbone = require('backbone');
 var mui = require('material-ui');
 var RaisedButton = mui.RaisedButton;
 var Picker = mui.TimePicker;
@@ -12,11 +13,11 @@ var Header = require('./header.jsx');
 var Navbar = require('./navbar.jsx');
 var Content = require('./content.jsx');
 var DEBUG = require('../js/debug');
+
 var Main = React.createClass({
 
   getInitialState: function () {
       return {
-          displayHeader : false,
           displayNavbar : false,  
           debug         : DEBUG
       };
@@ -24,17 +25,17 @@ var Main = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object,
-    displayHeader: React.PropTypes.bool,
     displayNavbar: React.PropTypes.bool,
-    lightbox : React.PropTypes.func
+    lightbox : React.PropTypes.func,
+    navigate : React.PropTypes.func
   },
 
   getChildContext: function() {
     return {
       muiTheme: ThemeManager.getCurrentTheme(),
-      displayHeader: this.state.displayHeader,
       displayNavbar: this.state.displayNavbar,
-      lightbox: this._lightbox
+      lightbox: this._lightbox,
+      navigate: this._navigate
     };
   },
 
@@ -74,16 +75,63 @@ var Main = React.createClass({
     }
   },
 
+  _route : function(route, param) {
+
+    if (this.state.debug) {
+      console.group('_route');
+      console.dir(this);
+      console.dir(route);
+      console.dir(param);
+      console.groupEnd();
+    }
+  },
+
+  _navigate : function(page, trigger) {
+      var tr = (trigger === false) ? false : true;
+      this.route.navigate(page, { trigger : tr });
+  },
+
   _clientInit : function() {
       this.setState({  //預期在這load local storage data
-          displayHeader : true,
           displayNavbar : true
       }); 
 
-      console.log('client init...'); console.log(this.context.displayNavbar);
+      //backbone route
+
+  var AppRouter = Backbone.Router.extend({
+      routes : {
+          'notice'          :  'notice',
+          'notice/:id'      :  'notice',
+          'calendar'        :  'calendar',
+          'calendar/:date'  :  'calendar',
+          'leave'           :  'leave',
+          'leave/:id'       :  'leave',
+          'search'          :  'search',
+          'search/:key'     :  'search',
+          'tools'           :  'tools',
+          'tools/:key'      :  'tools',
+          '*home'           :  'home',
+      },
+
+      home   : function() { 
+          if (name !== 'home') this._navigate('home', false);
+          return this._route('home');
+      }.bind(this),
+      notice   : this._route.bind(this,'notice'),
+      calendar : this._route.bind(this,'calendar'),
+      leave    : this._route.bind(this,'leave'),
+      search   : this._route.bind(this,'search'),
+      tools    : this._route.bind(this,'tools')
+
+  });
+
+      this.route = new AppRouter();
+      Backbone.history.start({ });
+      //this.route.on('route', this._route );
+
+      if (this.state.debug) console.log('client init...'); 
   },
 
-  _toggleHeader : function() { this.setState({ displayHeader: !this.state.displayHeader }); },
   _toggleNavbar : function() { this.setState({ displayNavbar: !this.state.displayNavbar }); },
   _lightbox : function(option) {
       var lb = {
@@ -105,19 +153,19 @@ var Main = React.createClass({
       console.groupEnd();
     }
 
-    var className = (this.state.displayHeader ? 'header-on ' : 'header-off ')
-                   +(this.state.displayNavbar ? 'navbar-on'  : 'navbar-off' );
+    var className = (this.state.displayNavbar ? 'navbar-on'  : 'navbar-off' );
 
     return (
       <main                                     className={className} id="main">
         <Header  ref="header" user="Liang Yeh" />
         <Navbar  ref="navbar"                  />
         <Content ref="content"                 className="content-area">
-          <h2>example project</h2>
-          <h1>material-ui</h1>
+
+          <h2>Content </h2>
+
           <DatePicker hintText="DatePicker" mode="landscape" />
           <Picker format="24hr" hintText="測試啦" />
-          <RaisedButton label="Super Secret Password" primary={true} onTouchTap={this._handleTouchTap} />
+
         </Content>
         <Dialog
           title={this.state.lightboxTitle}

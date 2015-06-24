@@ -5,7 +5,7 @@ var RaisedButton = mui.RaisedButton;
 var Menu = mui.Menu;
 var User = require('./user.jsx');
 var Logo = require('./logo.jsx');
-var HeaderButton = require('./header_button.jsx');
+var HeaderButton = require('./header-button.jsx');
 var Header = React.createClass({
 
   render: function() {

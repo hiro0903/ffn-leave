@@ -1,28 +1,65 @@
 var React = require('react');
 var mui = require('material-ui');
-var Paper = mui.Paper;
-var List = mui.List;
-var ListItem = mui.ListItem;
-var Navbar = React.createClass({
+var LeftNav = mui.LeftNav;
 
-  contextTypes: {
-    displayNavbar: React.PropTypes.bool,
-    displayHeader: React.PropTypes.bool
+
+var Navbar = React.createClass({
+  getDefaultProps: function () {
+      return {
+            navbarItems : [
+              { route: 'home',     text: 'HOME'  },
+              { route: 'notice',   text: '公告'   },
+              { route: 'calendar', text: '行事曆' },
+              { route: 'leaves',   text: 'Leaves' },
+              { route: 'search',   text: '搜尋'   },
+              { route: 'tools',    text: 'Tools'  }
+            ],
+            docked : true,
+            hide   : false
+      };
+  },
+  getInitialState: function () {
+      return {
+            selected : this.context.route ? this._getRouteIndex(this.context.route) : 0,
+            hide : this.props.hide
+      };
+  },
+
+  contextTypes : {
+      route : React.PropTypes.string  //這邊還不確定backbone的route做法
+  },
+
+  _getRouteIndex: function(route) {
+      var i = 0;
+      this.props.navbarItems.forEach(function(item, idx) { i = (item.route === route ? idx : i); });
+      return i;
+  },  
+
+  _onChange: function(e, index, item) {
+      console.log(item.route + ' selected:');
   },
 
   render: function() {
-    var containerStyle = {
-        width      : '100%',
+    var navStyle = {
+        width      : '180px',
         height     : '100%',
-        display    : 'block',
-        paddingTop : this.context.displayHeader ? '90px' : '20px'
+        paddingTop : '90px',
+        position   : 'absolute',
+        transform  : this.state.hide ? 'translate3d(-190px, 0px, 0px)' : 'translate3d(0px, 0px, 0px)',
+        zIndex     : '9'
     };
 
-    var navbarStyle = {
-        left : this.context.displayNavbar ? '0' : '-100%' 
-    };
+    return (<LeftNav 
+                ref="leftnav" 
+                menuItems={this.props.navbarItems} 
+                selectedIndex={this.state.selected} 
+                onChange={this._onChange} 
+                style={navStyle} 
+                docked={this.props.docked}
 
-    console.dir(this.context);
+            />);
+
+/*
 
     return (
       <nav className="side-nav" style={navbarStyle}>
@@ -38,6 +75,8 @@ var Navbar = React.createClass({
           </Paper>
       </nav>
     );
+
+*/
   },
 
   
