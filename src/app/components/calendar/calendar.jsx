@@ -12,9 +12,8 @@ module.exports = React.createClass({
     };
 
     return (
-        <Paper style={containerStyle} zDepth={1} className="search">
-          <div>Search</div>
-          {this.props.children}
+        <Paper style={containerStyle} zDepth={1} className="calendar">
+          <div>日曆會做到死!!!</div>
         </Paper>
     );
   }
