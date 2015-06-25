@@ -2,6 +2,8 @@
 
 var React = require('react');
 var Backbone = require('backbone');
+
+//import Material UI
 var mui = require('material-ui');
 var RaisedButton = mui.RaisedButton;
 var Picker = mui.TimePicker;
@@ -9,11 +11,23 @@ var DatePicker = mui.DatePicker;
 var Dialog = mui.Dialog;
 var ThemeManager = new mui.Styles.ThemeManager();
 var Colors = mui.Styles.Colors;
+
+//import system ui
 var Header = require('./header.jsx');
 var Navbar = require('./navbar.jsx');
 var Content = require('./content.jsx');
+
+//import custom views
+var Home   = require('./home/home.jsx'),
+    Leaves = require('./leaves/leaves.jsx'),
+    Notice = require('./notice/notice.jsx'),
+    Search = require('./search/search.jsx'),
+    Tools  = require('./tools/tools.jsx');
+
+//DBUG FLAG
 var DEBUG = require('../js/debug');
 
+//main entry
 var Main = React.createClass({
 
   getInitialState: function () {
@@ -177,12 +191,7 @@ var Main = React.createClass({
         </Dialog>
       </main>
     );
-  },
-
-  _handleTouchTap: function() {
-    alert('1-2-3-4-5');
   }
-  
 });
 
 module.exports = Main;
