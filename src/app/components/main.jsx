@@ -1,8 +1,16 @@
 var React = require('react');
 // var Backbone = require('backbone');
 
+//import React Router
+var Router = require('react-router');
+var Route = Router.Route;
+var RouteHandler = Router.RouteHandler;
+var Navigation = Router.Navigation;
+
 //import Material UI
 var mui = require('material-ui');
+var ThemeManager = new mui.Styles.ThemeManager();
+var Colors = mui.Styles.Colors;
 var Dialog = mui.Dialog;
 
 //import system ui
@@ -16,6 +24,8 @@ var DEBUG = require('../js/debug');
 //main entry
 var Main = React.createClass({
 
+  mixins: [Navigation],
+
   getInitialState: function () {
       return {
           displayNavbar : false,  
@@ -24,6 +34,7 @@ var Main = React.createClass({
   },
 
   childContextTypes: {
+    muiTheme: React.PropTypes.object,
     displayNavbar: React.PropTypes.bool,
     lightbox : React.PropTypes.func,
     navigate : React.PropTypes.func
@@ -31,10 +42,17 @@ var Main = React.createClass({
 
   getChildContext: function() {
     return {
+      muiTheme: ThemeManager.getCurrentTheme(),
       displayNavbar: this.state.displayNavbar,
       lightbox: this._lightbox,
       navigate: this._navigate
     };
+  },
+
+  componentWillMount: function() {
+    ThemeManager.setPalette({
+      accent1Color: Colors.deepOrange500
+    });
   },
 
   componentDidMount: function () {
@@ -103,7 +121,7 @@ var Main = React.createClass({
         <Navbar  ref="navbar"                  />
         <Content ref="content"                 className="content-area">
 
-          {this.props.children}
+          <RouteHandler/>
 
         </Content>
         <Dialog
