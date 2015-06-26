@@ -2,6 +2,8 @@ var React = require('react');
 var mui = require('material-ui');
 var LeftNav = mui.LeftNav;
 
+var FFNIcon = require('./ffn-icon.jsx');
+
 //navbar 的項目, 未來如果要客製化可提出到config
 var routes = ['home', 'notice', 'calendar', 'leaves', 'search', 'tools'];
 var lang = {
@@ -13,7 +15,7 @@ var lang = {
   'tools'    : '工具'
 };
 
-var navbarItems = routes.map( (value) => ({ route : value, text  : lang[value] }) );
+var navbarItems = routes.map( (value) => ({ route : value, text : lang[value] }) );
 
 var Navbar = React.createClass({
   getDefaultProps: function () {
