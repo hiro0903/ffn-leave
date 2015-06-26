@@ -4,15 +4,25 @@ var Card = mui.Card;
 var CardHeader = mui.CardHeader;
 var CardTitle = mui.CardTitle;
 var CardText = mui.CardText;
-
-var Paper = mui.Paper;
 var List = mui.List;
 var ListItem = mui.ListItem;
-var ListDivider = mui.ListDivider;
+var Avatar = mui.Avatar;
 var Icon = require('../ffn-icon.jsx');
 
 module.exports = React.createClass({
-  
+  contextTypes : {
+      router : React.PropTypes.func.isRequired,
+  },
+  _onClick : function(type, id, event) { //直接導向內容 #type/:id
+    var path = {
+      'event'     : 'calendar',
+      'notice'    : 'notice',
+      'away'      : 'leaves',
+      'leaves'    : 'leaves'
+    }[type];
+
+    return this.context.router.transitionTo(path);
+  },
   render : function() {
     var containerStyle = {
           width : '100%',
@@ -51,10 +61,12 @@ module.exports = React.createClass({
                 avatar={<Icon type="calendar" />}/>
               <CardText>
                 <List>
-                  <ListItem leftIcon={<Icon type="home" />}>Inbox</ListItem>
-                  <ListItem leftIcon={<Icon type="shit" />}>Starred</ListItem>
-                  <ListItem leftIcon={<Icon type="shit" />}>Sent mail</ListItem>
-                  <ListItem leftIcon={<Icon type="shit" />}>Drafts</ListItem>
+                  <ListItem leftIcon={<Icon type="home" />} secondaryText="All day"                            onTouchTap={this._onClick.bind(this, 'event', 0)}>My Birthday</ListItem>
+                  <ListItem leftIcon={<Icon type="shit" />} secondaryText="10:00 ~ 12:00 in Mtg Room A"        onTouchTap={this._onClick.bind(this, 'event', 1)}>Week Status Mtg(SOC-2168 MKTG-7015 Affiliate Banner & Lander Farm Projects</ListItem>
+                  <ListItem leftIcon={<Icon type="shit" />} secondaryText="13:00 ~ 14:00 in Second Floor Cafe" onTouchTap={this._onClick.bind(this, 'event', 2)}>Lunch with Nia, Miki and Dorian</ListItem>
+                  <ListItem leftIcon={<Icon type="shit" />} secondaryText="15:00 ~ 17:00"                      onTouchTap={this._onClick.bind(this, 'event', 3)}>Meeting: News Letter</ListItem>
+                  <ListItem leftIcon={<Icon type="shit" />} secondaryText="18:00 ~ 19:00"                      onTouchTap={this._onClick.bind(this, 'event', 4)}>Mtg SOC-1234</ListItem>
+                  <ListItem leftIcon={<Icon type="shit" />} secondaryText="19:00 ~ 20:00"                      onTouchTap={this._onClick.bind(this, 'event', 5)}>Dinner with Family</ListItem>
                 </List>
               </CardText>
             </Card>   
@@ -65,8 +77,8 @@ module.exports = React.createClass({
                 avatar={<Icon type="notice" />}/>
               <CardText>
                 <List>
-                  <ListItem secondaryText="Posted on 2015/11/13 by HR">今日午休時間提前為 12:00 ~ 13:00 </ListItem>
-                  <ListItem secondaryText="Posted on 2015/11/10 by HR">福委改選</ListItem>
+                  <ListItem secondaryText="Posted on 2015/11/13 by HR" onTouchTap={this._onClick.bind(this, 'notice', 0)}>今日午休時間提前為 12:00 ~ 13:00 </ListItem>
+                  <ListItem secondaryText="Posted on 2015/11/10 by HR" onTouchTap={this._onClick.bind(this, 'notice', 1)}>福委改選</ListItem>
                 </List>
               </CardText>
             </Card>
@@ -76,12 +88,15 @@ module.exports = React.createClass({
             <Card style={itemStyle} className="dashboard-item">
               <CardHeader
                 style={headerStyle}
-                title="Notice (2)"
-                avatar={<Icon type="notice" />}/>
+                title="今日請假概況 (5)"
+                avatar={<Icon type="logout" />}/>
               <CardText>
                 <List>
-                  <ListItem secondaryText="Posted on 2015/11/13 by HR">今日午休時間提前為 12:00 ~ 13:00 </ListItem>
-                  <ListItem secondaryText="Posted on 2015/11/10 by HR">福委改選</ListItem>
+                  <ListItem secondaryText="10:00 ~ 19:00 (1 Day)"    leftAvatar={<Avatar>A</Avatar>} onTouchTap={this._onClick.bind(this, 'away', 0)}>Ailly Wu</ListItem>
+                  <ListItem secondaryText="10:00 ~ 12:00 (0.25 Day)" leftAvatar={<Avatar>K</Avatar>} onTouchTap={this._onClick.bind(this, 'away', 1)}>Ken Chang</ListItem>
+                  <ListItem secondaryText="10:00 ~ 19:00 (1 Day)"    leftAvatar={<Avatar>C</Avatar>} onTouchTap={this._onClick.bind(this, 'away', 2)}>Chris Chu</ListItem>
+                  <ListItem secondaryText="11/12 ~ 11/14 (3 Day)"    leftAvatar={<Avatar>G</Avatar>} onTouchTap={this._onClick.bind(this, 'away', 3)}>Grass Liao</ListItem>
+                  <ListItem secondaryText="10:00 ~ 19:00 (1 Day)"    leftAvatar={<Avatar>P</Avatar>} onTouchTap={this._onClick.bind(this, 'away', 4)}>Peter Lee</ListItem>
                 </List>
               </CardText>
             </Card>
@@ -89,12 +104,13 @@ module.exports = React.createClass({
             <Card style={itemStyle} className="dashboard-item">
               <CardHeader
                 style={headerStyle}
-                title="Notice (2)"
-                avatar={<Icon type="notice" />}/>
+                title="假單 (3)"
+                avatar={<Icon type="rocket" />}/>
               <CardText>
                 <List>
-                  <ListItem secondaryText="Posted on 2015/11/13 by HR">今日午休時間提前為 12:00 ~ 13:00 </ListItem>
-                  <ListItem secondaryText="Posted on 2015/11/10 by HR">福委改選</ListItem>
+                  <ListItem secondaryText={<div style={ { backgroundColor: '#CCF' } }>Approved</div>}  onTouchTap={this._onClick.bind(this, 'leaves', 0)}>我 的 年假: 2015/12/16 ~ 2015/12/19</ListItem>
+                  <ListItem secondaryText={<div style={ { backgroundColor: '#FCA' } }>Pending</div>}   onTouchTap={this._onClick.bind(this, 'leaves', 1)}>Dorian 的 病假: 2015/11/12</ListItem>
+                  <ListItem secondaryText={<div style={ { backgroundColor: '#F99' } }>Denied</div>}    onTouchTap={this._onClick.bind(this, 'leaves', 2)}>我 的 年假: 2015/12/18</ListItem>
                 </List>
               </CardText>
             </Card>
