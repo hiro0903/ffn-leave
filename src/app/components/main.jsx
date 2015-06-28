@@ -18,13 +18,19 @@ var Header = require('./header.jsx');
 var Navbar = require('./navbar.jsx');
 var Content = require('./content.jsx');
 
+//Data Model
+var FFNData = require('./mixins/ffn-data.jsx');
+
+
+
+
 //DBUG FLAG
-var DEBUG = require('../js/debug');
+var DEBUG = require('./debug/debug.jsx');
 
 //main entry
 var Main = React.createClass({
 
-  mixins: [Navigation],
+  mixins: [Navigation, FFNData],
 
   getInitialState: function () {
       return {

@@ -4,8 +4,8 @@ var LeftNav = mui.LeftNav;
 
 var FFNIcon = require('./ffn-icon.jsx');
 
-//navbar 的項目, 未來如果要客製化可提出到config
-var routes = ['home', 'notice', 'calendar', 'leaves', 'search', 'tools'];
+var CONFIG = require('../config').Navbar;
+var routes = CONFIG.DEFAULT_ROUTERS;
 var lang = {
   'home'     : 'HOME',
   'notice'   : '公告',

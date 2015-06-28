@@ -7,6 +7,11 @@ var CardText = mui.CardText;
 var List = mui.List;
 var ListItem = mui.ListItem;
 var Avatar = mui.Avatar;
+
+//用來確認css動畫結束後才換頁
+var CssEvent = mui.Utils.CssEvent;
+
+
 var Icon = require('../ffn-icon.jsx');
 
 module.exports = React.createClass({
@@ -15,13 +20,14 @@ module.exports = React.createClass({
   },
   _onClick : function(type, id, event) { //直接導向內容 #type/:id
     var path = {
-      'event'     : 'calendar',
-      'notice'    : 'notice',
-      'away'      : 'leaves',
-      'leaves'    : 'leaves'
-    }[type];
+          'event'     : 'calendar',
+          'notice'    : 'notice',
+          'away'      : 'leaves',
+          'leaves'    : 'leaves'
+        }[type],
+        domNode = event.currentTarget;  //currentTarget => 整個ListItem   target => 有可能會是avatar圖示之類沒有css效果的, 造成不觸發
 
-    return this.context.router.transitionTo(path);
+    return CssEvent.onTransitionEnd( domNode, this.context.router.transitionTo.bind(this, path) );
   },
   render : function() {
     var containerStyle = {
