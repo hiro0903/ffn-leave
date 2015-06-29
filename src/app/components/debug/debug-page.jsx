@@ -29,9 +29,9 @@ module.exports = React.createClass({
 
     return (
       <List>
-        <ListItem leftIcon={<Icon type="home" />} onTouchTap={this._onClick.bind(this, 123)}>123</ListItem>
-        <ListItem leftIcon={<Icon type="shit" />} onTouchTap={this._onClick.bind(this, 456)}>456</ListItem>
-        <ListItem leftIcon={<Icon type="shit" />} onTouchTap={this._onClick.bind(this, 789)}>789</ListItem>
+        <ListItem leftIcon={<Icon type="home"   />} onTouchTap={this._onClick.bind(this, 123)}>123</ListItem>
+        <ListItem leftIcon={<Icon type="leave"  />} onTouchTap={this._onClick.bind(this, 456)}>456</ListItem>
+        <ListItem leftIcon={<Icon type="notice" />} onTouchTap={this._onClick.bind(this, 789)}>789</ListItem>
       </List>
 
     );

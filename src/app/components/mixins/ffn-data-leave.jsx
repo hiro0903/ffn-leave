@@ -1,5 +1,5 @@
 var React = require('react');
-var LeaveCollection = require('../collections/collection-leave.jsx');
+var LeaveCollection = require('../../data/collections/collection-leave.jsx');
 
 module.exports = {
 

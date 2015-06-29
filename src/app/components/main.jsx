@@ -14,15 +14,12 @@ var Colors = mui.Styles.Colors;
 var Dialog = mui.Dialog;
 
 //import system ui
-var Header = require('./header.jsx');
-var Navbar = require('./navbar.jsx');
+var Header = require('./header/header.jsx');
+var Navbar = require('./navbar/navbar.jsx');
 var Content = require('./content.jsx');
 
 //Data Model
 var FFNData = require('./mixins/ffn-data.jsx');
-
-
-
 
 //DBUG FLAG
 var DEBUG = require('./debug/debug.jsx');
