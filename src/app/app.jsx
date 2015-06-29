@@ -8,15 +8,15 @@
   var Redirect = Router.Redirect;
 
   //import custom views
-  var components = require('./components');
+  var Components = require('./components');
 
-  var Main     = components.Main,
-      Home     = components.Home,
-      Notice   = components.Notice,
-      Calendar = components.Calendar,
-      Leaves   = components.Leaves,
-      Search   = components.Search,
-      Tools    = components.Tools;
+  var Main     = Components.Main,
+      Home     = Components.Home,
+      Notice   = Components.Notice,
+      Calendar = Components.Calendar,
+      Leaves   = Components.Leaves,
+      Search   = Components.Search,
+      Tools    = Components.Tools;
 
   var routes   = (
     <Route path="/" handler={Main}>
@@ -40,7 +40,7 @@
   if (DEBUG) { 
     //Needed for React Developer Tools
     window.React = React;
-    var DebugPage = components.DebugPage,
+    var DebugPage = Components.DebugPage,
         DefaultRoute = Router.DefaultRoute;
 
     

@@ -67,12 +67,12 @@ module.exports = React.createClass({
                 avatar={<Icon type="calendar" />}/>
               <CardText>
                 <List>
-                  <ListItem leftIcon={<Icon type="home" />} secondaryText="All day"                            onTouchTap={this._onClick.bind(this, 'event', 0)}>My Birthday</ListItem>
-                  <ListItem leftIcon={<Icon type="shit" />} secondaryText="10:00 ~ 12:00 in Mtg Room A"        onTouchTap={this._onClick.bind(this, 'event', 1)}>Week Status Mtg(SOC-2168 MKTG-7015 Affiliate Banner & Lander Farm Projects</ListItem>
-                  <ListItem leftIcon={<Icon type="shit" />} secondaryText="13:00 ~ 14:00 in Second Floor Cafe" onTouchTap={this._onClick.bind(this, 'event', 2)}>Lunch with Nia, Miki and Dorian</ListItem>
-                  <ListItem leftIcon={<Icon type="shit" />} secondaryText="15:00 ~ 17:00"                      onTouchTap={this._onClick.bind(this, 'event', 3)}>Meeting: News Letter</ListItem>
-                  <ListItem leftIcon={<Icon type="shit" />} secondaryText="18:00 ~ 19:00"                      onTouchTap={this._onClick.bind(this, 'event', 4)}>Mtg SOC-1234</ListItem>
-                  <ListItem leftIcon={<Icon type="shit" />} secondaryText="19:00 ~ 20:00"                      onTouchTap={this._onClick.bind(this, 'event', 5)}>Dinner with Family</ListItem>
+                  <ListItem leftIcon={<Icon type="calendar" />} secondaryText="All day"                            onTouchTap={this._onClick.bind(this, 'event', 0)}>My Birthday</ListItem>
+                  <ListItem leftIcon={<Icon type="calendar" />} secondaryText="10:00 ~ 12:00 in Mtg Room A"        onTouchTap={this._onClick.bind(this, 'event', 1)}>Week Status Mtg(SOC-2168 MKTG-7015 Affiliate Banner & Lander Farm Projects</ListItem>
+                  <ListItem leftIcon={<Icon type="calendar" />} secondaryText="13:00 ~ 14:00 in Second Floor Cafe" onTouchTap={this._onClick.bind(this, 'event', 2)}>Lunch with Nia, Miki and Dorian</ListItem>
+                  <ListItem leftIcon={<Icon type="calendar" />} secondaryText="15:00 ~ 17:00"                      onTouchTap={this._onClick.bind(this, 'event', 3)}>Meeting: News Letter</ListItem>
+                  <ListItem leftIcon={<Icon type="calendar" />} secondaryText="18:00 ~ 19:00"                      onTouchTap={this._onClick.bind(this, 'event', 4)}>Mtg SOC-1234</ListItem>
+                  <ListItem leftIcon={<Icon type="calendar" />} secondaryText="19:00 ~ 20:00"                      onTouchTap={this._onClick.bind(this, 'event', 5)}>Dinner with Family</ListItem>
                 </List>
               </CardText>
             </Card>   
@@ -95,7 +95,7 @@ module.exports = React.createClass({
               <CardHeader
                 style={headerStyle}
                 title="今日請假概況 (5)"
-                avatar={<Icon type="logout" />}/>
+                avatar={<Icon type="leave" />}/>
               <CardText>
                 <List>
                   <ListItem secondaryText="10:00 ~ 19:00 (1 Day)"    leftAvatar={<Avatar>A</Avatar>} onTouchTap={this._onClick.bind(this, 'away', 0)}>Ailly Wu</ListItem>
@@ -111,7 +111,7 @@ module.exports = React.createClass({
               <CardHeader
                 style={headerStyle}
                 title="假單 (3)"
-                avatar={<Icon type="rocket" />}/>
+                avatar={<Icon type="leave" />}/>
               <CardText>
                 <List>
                   <ListItem secondaryText={<div style={ { backgroundColor: '#CCF' } }>Approved</div>}  onTouchTap={this._onClick.bind(this, 'leaves', 0)}>我 的 年假: 2015/12/16 ~ 2015/12/19</ListItem>
@@ -123,26 +123,7 @@ module.exports = React.createClass({
         </div>
 
       </div>
-      /**
-      <Paper>
-        <List subheader="Dashboard">
-          <ListItem leftIcon={<Icon type="home" />}>Inbox</ListItem>
-          <ListItem leftIcon={<Icon type="shit" />}>Starred</ListItem>
-          <ListItem leftIcon={<Icon type="shit" />}>Sent mail</ListItem>
-          <ListItem leftIcon={<Icon type="shit" />}>Drafts</ListItem>
-        </List>
 
-        <ListDivider inset={false} />
-
-        <List>
-          <ListItem secondaryText='hi'><Icon type="rocket" />All mail</ListItem>
-          <ListItem secondaryText='hi'><Icon type="trash" />Trash</ListItem>
-          <ListItem secondaryText='hi'><Icon type="lock" />Spam</ListItem>
-          <ListItem secondaryText='hi'><Icon type="logout" />Follow up</ListItem>
-        </List>
-      </Paper>
-
-      **/
     );
   }
 });

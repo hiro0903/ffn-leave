@@ -3,8 +3,8 @@ var mui = require('material-ui');
 var Paper = mui.Paper;
 var RaisedButton = mui.RaisedButton;
 var Menu = mui.Menu;
-var User = require('./user.jsx');
-var Logo = require('./logo.jsx');
+var User = require('./header-user.jsx');
+var Logo = require('./header-logo.jsx');
 var HeaderButton = require('./header-button.jsx');
 var Header = React.createClass({
 

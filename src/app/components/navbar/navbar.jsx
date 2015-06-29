@@ -2,9 +2,9 @@ var React = require('react');
 var mui = require('material-ui');
 var LeftNav = mui.LeftNav;
 
-var FFNIcon = require('./ffn-icon.jsx');
+var FFNIcon = require('../ffn-icon.jsx');
 
-var CONFIG = require('../config').Navbar;
+var CONFIG = require('../../config').Navbar;
 var routes = CONFIG.DEFAULT_ROUTERS;
 var lang = {
   'home'     : 'HOME',

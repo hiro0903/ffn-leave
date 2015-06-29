@@ -1,8 +1,8 @@
 module.exports = {
     //TOP LEVEL VIEWS
     Main : require('./main.jsx'),
-    Header : require('./header.jsx'),
-    Navbar : require('./navbar.jsx'),
+    Header : require('./header/header.jsx'),
+    Navbar : require('./navbar/navbar.jsx'),
     Content: require('./content.jsx'),
 
     //SECONDARY LEVEL VIEWS
