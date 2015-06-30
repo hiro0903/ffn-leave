@@ -73,8 +73,11 @@ body {
 /** FFN ICONS **/
 .ffn-icon { font-family: "ffn-icons"; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; }
 .ffn-icon.home:before     { content : "\e600"; }
-.ffn-icon.notice:before   { content : "\e601"; }
-.ffn-icon.leave:before    { content : "\e602"; }
+.ffn-icon.notice:before,
+.ffn-icon.notices:before  { content : "\e601"; }
+.ffn-icon.leave:before,
+.ffn-icon.leaves:before   { content : "\e602"; }
 .ffn-icon.calendar:before { content : "\e603"; }
 .ffn-icon.search:before   { content : "\e604"; }
-.ffn-icon.tool:before     { content : "\e605"; }
+.ffn-icon.tool:before,
+.ffn-icon.tools:before    { content : "\e605"; }

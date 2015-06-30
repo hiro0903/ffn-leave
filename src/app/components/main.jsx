@@ -31,24 +31,27 @@ var Main = React.createClass({
 
   getInitialState: function () {
       return {
-          displayNavbar : false,  
-          debug         : DEBUG
+          displayNavbar   : false,  
+          debug           : DEBUG,
+          lightboxContent : React.createClass({ render: function() { return (<div></div>); }  })
       };
   },
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
-    displayNavbar: React.PropTypes.bool,
-    lightbox : React.PropTypes.func,
-    navigate : React.PropTypes.func
+    muiTheme      : React.PropTypes.object,
+    displayNavbar : React.PropTypes.bool,
+    lightbox      : React.PropTypes.func,
+    navigate      : React.PropTypes.func,
+    leaveTypes    : React.PropTypes.array
   },
 
   getChildContext: function() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme(),
-      displayNavbar: this.state.displayNavbar,
-      lightbox: this._lightbox,
-      navigate: this._navigate
+      muiTheme      : ThemeManager.getCurrentTheme(),
+      displayNavbar : this.state.displayNavbar,
+      lightbox      : this._lightbox,
+      navigate      : this._navigate,
+      leaveTypes    : window.FFN.leaveTypes
     };
   },
 
@@ -102,8 +105,8 @@ var Main = React.createClass({
           lightboxContent:  option.content || '',
           lightboxAction :  option.action  || []
       }
-    this.setState(lb);
-    this.refs.lightbox.show();
+      this.setState(lb);
+      this.refs.lightbox.show();
   },
   render: function() {
 
@@ -117,7 +120,7 @@ var Main = React.createClass({
     }
 
     var className = (this.state.displayNavbar ? 'navbar-on'  : 'navbar-off' );
-
+    var LightboxContent = this.state.lightboxContent;
     return (
       <main                                     className={className} id="main">
         <Header  ref="header" user="Liang Yeh" />
@@ -131,9 +134,9 @@ var Main = React.createClass({
           title={this.state.lightboxTitle}
           ref="lightbox"
           modal={false}
-          action={this.state.lightboxAction}
+          actions={this.state.lightboxAction}
         >
-          {this.state.lightboxContent}
+          <LightboxContent />
         </Dialog>
       </main>
     );

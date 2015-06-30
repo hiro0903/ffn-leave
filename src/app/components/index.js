@@ -14,7 +14,4 @@ module.exports = {
     Search    : require('./search/search.jsx'),
     Tools     : require('./tools/tools.jsx'),
 
-    Models      : require('./models'),
-    Collections : require('./collections'),
-
 }

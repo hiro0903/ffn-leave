@@ -11,22 +11,47 @@
 </head>
 
 <body>
-  <!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
-  <script>
-    var WebFontConfig = {
-      google: { families: [ 'Roboto:400,300,500:latin' ] }
-    };
-    (function() {
-      var wf = document.createElement('script');
-      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-      wf.type = 'text/javascript';
-      wf.async = 'true';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(wf, s);
-    })();
-  </script>
-  <script src="app.js"></script>
+
+<!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
+<script>
+var WebFontConfig = {
+  google: { families: [ 'Roboto:400,300,500:latin' ] }
+};
+(function() {
+  var wf = document.createElement('script');
+  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+  '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  wf.type = 'text/javascript';
+  wf.async = 'true';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(wf, s);
+})();
+</script>
+
+
+
+<!-- 由後台塞入的config檔 -->
+<script>
+self.FFN = {
+  leaveTypes : [
+    { id : 1, text : '曠職'      },
+    { id : 2, text : '事假'      },
+    { id : 3, text : '全薪病假'  },
+    { id : 4, text : '半薪病假'  },
+    { id : 5, text : '無薪病假'  },
+    { id : 6, text : '婚假'      },
+    { id : 7, text : '產假'      },
+    { id : 8, text : '喪假'      },
+    { id : 9, text : '特休'      },
+    { id :10, text : '補休'      },
+    { id :11, text : '公傷假'    },
+    { id :15, text : '陪產假'    },
+    { id :16, text : '颱風假'    }  
+  ]
+}
+</script>
+
+<script src="app.js"></script>
 </body>
 
 </html>

@@ -15,7 +15,7 @@ var lang = {
   'tools'    : '工具'
 };
 
-var navbarItems = routes.map( (value) => ({ route : value, text : lang[value] }) );
+var navbarItems = routes.map( (value) => ({ route : value, text : lang[value], iconClassName: 'ffn-icon ' + value }) );
 
 var Navbar = React.createClass({
   getDefaultProps: function () {
