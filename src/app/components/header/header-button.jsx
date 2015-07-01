@@ -41,7 +41,8 @@ var HeaderButton = React.createClass({
 
   render: function() {
     var containerStyle = { 
-            position : 'relative'
+            position : 'relative',
+            minWidth : '150px'  //需要多點空間讓下面Menu展開
         },
         menuStyle = {
             top : '100%',
@@ -53,7 +54,7 @@ var HeaderButton = React.createClass({
           <RaisedButton label="Create New" primary={true} onTouchTap={this._toggleMenu} />
           <Menu 
             menuItems={this.props.menuItems} 
-            autoWidth={true} 
+            autoWidth={false} 
             hideable={true} 
             visible={this.state.showMenu} 
             style={menuStyle} 

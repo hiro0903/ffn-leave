@@ -6,7 +6,7 @@ var FFNIcon = require('../ffn-icon.jsx');
 
 var CONFIG = require('../../config').Navbar;
 var routes = CONFIG.DEFAULT_ROUTERS;
-var lang = {
+var default_lang = {
   'home'     : 'HOME',
   'notice'   : '公告',
   'calendar' : '行事曆',
@@ -15,24 +15,25 @@ var lang = {
   'tools'    : '工具'
 };
 
-var navbarItems = routes.map( (value) => ({ route : value, text : lang[value], iconClassName: 'ffn-icon ' + value }) );
-
 var Navbar = React.createClass({
   getDefaultProps: function () {
       return {
-            navbarItems : navbarItems,
             docked : true,
             hide   : false
       };
   },
   getInitialState: function () {
+      var lang = this.context.lang.navbar || default_lang;
+      var navbarItems = routes.map( (value) => ({ route : value, text : lang[value], iconClassName: 'ffn-icon ' + value }) );
       return {
-            hide : this.props.hide
+            hide        : this.props.hide,
+            navbarItems : navbarItems
       };
   },
 
   contextTypes : {
       router : React.PropTypes.func.isRequired,
+      lang   : React.PropTypes.object.isRequired
   },
 
   _getRouteIndex: function(route) {
@@ -61,7 +62,7 @@ var Navbar = React.createClass({
 
     return (<LeftNav 
                 ref="leftnav" 
-                menuItems={this.props.navbarItems} 
+                menuItems={this.state.navbarItems} 
                 selectedIndex={index} 
                 onChange={this._onChange} 
                 style={navStyle} 

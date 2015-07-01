@@ -30,10 +30,19 @@ var Main = React.createClass({
   mixins: [Navigation, FFNData],
 
   getInitialState: function () {
+      var root = FFN || {},
+          user = FFN.user || {},
+          lang = user.lang;
+
       return {
+          lang            : lang,
           displayNavbar   : false,  
           debug           : DEBUG,
-          lightboxContent : React.createClass({ render: function() { return (<div></div>); }  })
+
+          //lightbox
+          lightboxTitle   : '',
+          lightboxContent : React.createClass({ render: function() { return (<div></div>); }  }),
+          lightboxAction  : []
       };
   },
 
@@ -42,7 +51,8 @@ var Main = React.createClass({
     displayNavbar : React.PropTypes.bool,
     lightbox      : React.PropTypes.func,
     navigate      : React.PropTypes.func,
-    leaveTypes    : React.PropTypes.array
+    leaveTypes    : React.PropTypes.array,
+    lang          : React.PropTypes.object  //UI 語言包
   },
 
   getChildContext: function() {
@@ -51,7 +61,8 @@ var Main = React.createClass({
       displayNavbar : this.state.displayNavbar,
       lightbox      : this._lightbox,
       navigate      : this._navigate,
-      leaveTypes    : window.FFN.leaveTypes
+      leaveTypes    : window.FFN.leaveTypes,
+      lang          : window.FFN.lang
     };
   },
 
@@ -101,9 +112,9 @@ var Main = React.createClass({
   _toggleNavbar : function() { this.setState({ displayNavbar: !this.state.displayNavbar }); },
   _lightbox : function(option) {
       var lb = {
-          lightboxTitle  :  option.title   || '',
-          lightboxContent:  option.content || '',
-          lightboxAction :  option.action  || []
+          lightboxTitle  :  option.title   || this.state.lightboxTitle,
+          lightboxContent:  option.content || this.state.lightboxContent,
+          lightboxAction :  option.action  || this.state.lightboxAction
       }
       this.setState(lb);
       this.refs.lightbox.show();

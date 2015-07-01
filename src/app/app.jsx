@@ -42,7 +42,6 @@
     window.React = React;
     var DebugPage = Components.DebugPage,
         DefaultRoute = Router.DefaultRoute;
-
     
     routes   = ( //增加debug頁, 拔除redirect方便檢查path是否給錯
       <Route path="/" handler={Main}>
