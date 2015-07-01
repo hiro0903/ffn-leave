@@ -12,15 +12,12 @@
 
 <body>
 
-<!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
+<!-- This script adds the Roboto font -->
 <script>
-var WebFontConfig = {
-  google: { families: [ 'Roboto:400,300,500:latin' ] }
-};
+var WebFontConfig = { google: { families: [ 'Roboto:400,300,500:latin' ] } };
 (function() {
   var wf = document.createElement('script');
-  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-  '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
   wf.type = 'text/javascript';
   wf.async = 'true';
   var s = document.getElementsByTagName('script')[0];
@@ -30,7 +27,7 @@ var WebFontConfig = {
 
 
 
-<!-- 由後台塞入的config檔 -->
+<!-- 由後台塞入的config & lang pack -->
 <script>
 self.FFN = {
   leaveTypes : [
@@ -70,15 +67,16 @@ self.FFN = {
 
   user : {
     //即使沒login也需要的資料
-    id   : 286,  // 0 === un-login
+    id   : 286,  // 0: 未登入
     lang : 'zh',
-    //login之後才有
+    //login之後才有, 慢慢加入
     name : 'Chris Chu',
   }
 
 }
 </script>
 
+<!-- built by gulp, the entry at /app/app.jsx -->
 <script src="app.js"></script>
 </body>
 
