@@ -18,6 +18,10 @@ var LeaveForm = React.createClass({
       leaveTypes : React.PropTypes.array
   },
 
+  componentWillMount: function () {
+        
+  },
+
   toJSON : function() {
     return {};
   },
@@ -29,6 +33,7 @@ var LeaveForm = React.createClass({
   },
 
   _parseLeaveItems : function(items) {
+
       return items;
   },
 

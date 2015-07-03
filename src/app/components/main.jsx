@@ -11,12 +11,12 @@ var Navigation = Router.Navigation;
 var mui = require('material-ui');
 var ThemeManager = new mui.Styles.ThemeManager();
 var Colors = mui.Styles.Colors;
-var Dialog = mui.Dialog;
 
 //import system ui
 var Header = require('./header/header.jsx');
 var Navbar = require('./navbar/navbar.jsx');
 var Content = require('./content.jsx');
+var Lightbox = require('./lightbox.jsx');
 
 //Data Model
 var FFNData = require('./mixins/ffn-data.jsx');
@@ -38,11 +38,6 @@ var Main = React.createClass({
           lang            : lang,
           displayNavbar   : false,  
           debug           : DEBUG,
-
-          //lightbox
-          lightboxTitle   : '',
-          lightboxContent : React.createClass({ render: function() { return (<div></div>); }  }),
-          lightboxAction  : []
       };
   },
 
@@ -110,15 +105,11 @@ var Main = React.createClass({
   },
 
   _toggleNavbar : function() { this.setState({ displayNavbar: !this.state.displayNavbar }); },
+
   _lightbox : function(option) {
-      var lb = {
-          lightboxTitle  :  option.title   || this.state.lightboxTitle,
-          lightboxContent:  option.content || this.state.lightboxContent,
-          lightboxAction :  option.action  || this.state.lightboxAction
-      }
-      this.setState(lb);
-      this.refs.lightbox.show();
+      return this.refs.lightbox.show(option);
   },
+
   render: function() {
 
     if (this.state.debug) {
@@ -141,14 +132,7 @@ var Main = React.createClass({
           <RouteHandler/>
 
         </Content>
-        <Dialog
-          title={this.state.lightboxTitle}
-          ref="lightbox"
-          modal={false}
-          actions={this.state.lightboxAction}
-        >
-          <LightboxContent />
-        </Dialog>
+        <Lightbox ref="lightbox" />
       </main>
     );
   }
