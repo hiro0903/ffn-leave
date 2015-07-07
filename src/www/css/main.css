@@ -41,7 +41,7 @@ body {
 }
 
 #main { width: 100vw; height: 100vh; padding: 90px 20px 0 20px; overflow: hidden; position: relative; box-sizing: border-box; background-color: #DFDBD8; 
-        transition: padding 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5ms; }
+        transition: padding 1s cubic-bezier(0.23, 1, 0.32, 1); }
 
 #main.navbar-on { padding-left: 200px; }
 
@@ -77,7 +77,8 @@ body {
 .ffn-icon.notices:before  { content : "\e601"; }
 .ffn-icon.leave:before,
 .ffn-icon.leaves:before   { content : "\e602"; }
-.ffn-icon.calendar:before { content : "\e603"; }
+.ffn-icon.calendar:before,
+.ffn-icon.event:before    { content : "\e603"; }
 .ffn-icon.search:before   { content : "\e604"; }
 .ffn-icon.tool:before,
 .ffn-icon.tools:before    { content : "\e605"; }

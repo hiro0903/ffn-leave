@@ -13,5 +13,4 @@ module.exports = {
     Notice    : require('./notice/notice.jsx'),
     Search    : require('./search/search.jsx'),
     Tools     : require('./tools/tools.jsx'),
-
 }

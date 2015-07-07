@@ -6,27 +6,17 @@ var FFNIcon = require('../ffn-icon.jsx');
 
 var CONFIG = require('../../config').Navbar;
 var routes = CONFIG.DEFAULT_ROUTERS;
-var default_lang = {
-  'home'     : 'HOME',
-  'notice'   : '公告',
-  'calendar' : '行事曆',
-  'leaves'   : '請假記錄',
-  'search'   : '搜尋',
-  'tools'    : '工具'
-};
 
 var Navbar = React.createClass({
   getDefaultProps: function () {
       return {
-            docked : true,
-            hide   : false
+            docked : true
       };
   },
   getInitialState: function () {
-      var lang = this.context.lang.navbar || default_lang;
+      var lang = this.context.lang.navbar;
       var navbarItems = routes.map( (value) => ({ route : value, text : lang[value], iconClassName: 'ffn-icon ' + value }) );
       return {
-            hide        : this.props.hide,
             navbarItems : navbarItems
       };
   },
@@ -55,7 +45,7 @@ var Navbar = React.createClass({
         height     : '100%',
         paddingTop : '90px',
         position   : 'absolute',
-        transform  : this.state.hide ? 'translate3d(-190px, 0px, 0px)' : 'translate3d(0px, 0px, 0px)',
+//        transform  : this.context.displayNavbar ? 'translate3d(-190px, 0px, 0px)' : 'translate3d(0px, 0px, 0px)',
         zIndex     : '9'
     };
 

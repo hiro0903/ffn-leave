@@ -1,5 +1,9 @@
 var React = require('react');
-// var Backbone = require('backbone');
+
+/*
+var Backbone = require('backbone');
+var Model = Backbone.Model;
+*/
 
 //import React Router
 var Router = require('react-router');
@@ -19,7 +23,10 @@ var Content = require('./content.jsx');
 var Lightbox = require('./lightbox.jsx');
 
 //Data Model
-var FFNData = require('./mixins/ffn-data.jsx');
+var FFNData     = require('./mixins/ffn-data.jsx');
+var Permissions = require('./mixins/ffn-permission.jsx');  //撿查權限, 提供  this.context.hasPermission (name) 
+var User        = require('./mixins/ffn-user.jsx');
+var Lang        = require('./mixins/ffn-lang.jsx');
 
 //DBUG FLAG
 var DEBUG = require('./debug/debug.jsx');
@@ -27,37 +34,31 @@ var DEBUG = require('./debug/debug.jsx');
 //main entry
 var Main = React.createClass({
 
-  mixins: [Navigation, FFNData],
+  mixins: [Navigation, FFNData, Permissions, User, Lang],
 
   getInitialState: function () {
-      var root = FFN || {},
-          user = FFN.user || {},
-          lang = user.lang;
+      var ffn        = window.FFN            || {},
+          leaveTypes = window.FFN.leaveTypes || [];
 
       return {
-          lang            : lang,
-          displayNavbar   : false,  
-          debug           : DEBUG,
+          displayNavbar   : true,
+          debug           : DEBUG
       };
   },
 
   childContextTypes: {
     muiTheme      : React.PropTypes.object,
-    displayNavbar : React.PropTypes.bool,
     lightbox      : React.PropTypes.func,
-    navigate      : React.PropTypes.func,
+    navigate      : React.PropTypes.func,   //換頁func
     leaveTypes    : React.PropTypes.array,
-    lang          : React.PropTypes.object  //UI 語言包
   },
 
   getChildContext: function() {
     return {
       muiTheme      : ThemeManager.getCurrentTheme(),
-      displayNavbar : this.state.displayNavbar,
       lightbox      : this._lightbox,
       navigate      : this._navigate,
       leaveTypes    : window.FFN.leaveTypes,
-      lang          : window.FFN.lang
     };
   },
 
@@ -72,6 +73,7 @@ var Main = React.createClass({
   },
 
   componentWillUpdate: function (nextProps, nextState) {
+
     if (this.state.debug) {
       console.group('main-component will update');
       console.log('props changes:');
@@ -85,6 +87,7 @@ var Main = React.createClass({
   },
 
   componentDidUpdate: function (prevProps, prevState) {
+
     if (this.state.debug) {
       console.group('main-component did update');
       console.log('props changes:');
@@ -98,9 +101,9 @@ var Main = React.createClass({
   },
 
   _clientInit : function() {
-      this.setState({  //預期在這load local storage data
-          displayNavbar : true
-      }); 
+      // this.setState({  //預期在這load local storage data
+      //     displayNavbar : true
+      // }); 
       if (this.state.debug) console.log('client init...'); 
   },
 
@@ -121,7 +124,7 @@ var Main = React.createClass({
       console.groupEnd();
     }
 
-    var className = (this.state.displayNavbar ? 'navbar-on'  : 'navbar-off' );
+    var className = (this.state.displayNavbar ? 'navbar-on'  : '' );
     var LightboxContent = this.state.lightboxContent;
     return (
       <main                                     className={className} id="main">
