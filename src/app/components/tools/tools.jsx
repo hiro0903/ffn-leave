@@ -3,7 +3,6 @@ var mui = require('material-ui');
 var Paper = mui.Paper;
 
 module.exports = React.createClass({
-  
   render : function() {
     var containerStyle = {
         width    : '100%',
@@ -14,6 +13,7 @@ module.exports = React.createClass({
     return (
         <Paper style={containerStyle} zDepth={1} className="tool">
           <div>Tool</div>
+          <div>{this.props.currentTime}</div>
         </Paper>
     );
   }

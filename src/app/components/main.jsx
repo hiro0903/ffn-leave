@@ -7,7 +7,6 @@ var Model = Backbone.Model;
 
 //import React Router
 var Router = require('react-router');
-var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 var Navigation = Router.Navigation;
 
@@ -40,9 +39,10 @@ var Main = React.createClass({
       var ffn        = window.FFN            || {},
           leaveTypes = window.FFN.leaveTypes || [];
 
+      if (DEBUG) console.info('getInitialState');
+
       return {
-          displayNavbar   : true,
-          debug           : DEBUG
+          displayNavbar   : true
       };
   },
 
@@ -51,6 +51,18 @@ var Main = React.createClass({
     lightbox      : React.PropTypes.func,
     navigate      : React.PropTypes.func,   //換頁func
     leaveTypes    : React.PropTypes.array,
+  },
+
+  componentWillMount: function() {
+    console.groupCollapsed('mount main');
+    ThemeManager.setPalette({
+      accent1Color: Colors.deepOrange500
+    });
+  },
+
+  componentDidMount: function () {
+      this._clientInit();  
+      console.groupEnd('mount main');
   },
 
   getChildContext: function() {
@@ -62,19 +74,9 @@ var Main = React.createClass({
     };
   },
 
-  componentWillMount: function() {
-    ThemeManager.setPalette({
-      accent1Color: Colors.deepOrange500
-    });
-  },
-
-  componentDidMount: function () {
-      this._clientInit();  
-  },
-
   componentWillUpdate: function (nextProps, nextState) {
-
-    if (this.state.debug) {
+    if (DEBUG) {
+      console.groupCollapsed('update main');
       console.group('main-component will update');
       console.log('props changes:');
       console.dir(this.props);
@@ -87,8 +89,7 @@ var Main = React.createClass({
   },
 
   componentDidUpdate: function (prevProps, prevState) {
-
-    if (this.state.debug) {
+    if (DEBUG) {
       console.group('main-component did update');
       console.log('props changes:');
       console.dir(prevProps);
@@ -96,7 +97,8 @@ var Main = React.createClass({
       console.log('states changes:');  
       console.dir(prevState);
       console.dir(this.state);
-      console.groupEnd();
+      console.groupEnd('main-component did update');
+      console.groupEnd('update main');
     }
   },
 
@@ -104,7 +106,7 @@ var Main = React.createClass({
       // this.setState({  //預期在這load local storage data
       //     displayNavbar : true
       // }); 
-      if (this.state.debug) console.log('client init...'); 
+      if (DEBUG) console.info('client init...'); 
   },
 
   _toggleNavbar : function() { this.setState({ displayNavbar: !this.state.displayNavbar }); },
@@ -115,7 +117,7 @@ var Main = React.createClass({
 
   render: function() {
 
-    if (this.state.debug) {
+    if (DEBUG) {
       console.group('main-component render');
       console.log('props:');
       console.dir(this.props);

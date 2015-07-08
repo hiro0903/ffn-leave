@@ -1,12 +1,18 @@
 var React = require('react');
-var mui = require('material-ui');
 
+var mui = require('material-ui');
 var RaisedButton = mui.RaisedButton;
 var Menu = mui.Menu;
 
 var config = require('../../config/config-header').createMenuList;
 
 var HeaderButton = React.createClass({
+
+  contextTypes : {
+      lightbox    : React.PropTypes.func,
+      permissions : React.PropTypes.object,
+      lang        : React.PropTypes.object.isRequired
+  },
 
   getInitialState: function () {
       var lang = this.context.lang;
@@ -21,15 +27,6 @@ var HeaderButton = React.createClass({
           menuItems  : menuItems,
           showMenu : false
       };
-  },
-
-  getDefaultProps: function () {
-  },
-
-  contextTypes : {
-      lightbox    : React.PropTypes.func,
-      permissions : React.PropTypes.object,
-      lang        : React.PropTypes.object.isRequired
   },
 
   _toggleMenu : function(e) {
@@ -51,7 +48,6 @@ var HeaderButton = React.createClass({
             transform : 'translate3d( 0, 5px, 0)'
         };
 
-
     return (
       <div className="menu-btn" style={containerStyle} >
           <RaisedButton label="Create New" primary={true} onTouchTap={this._toggleMenu} />
@@ -66,9 +62,6 @@ var HeaderButton = React.createClass({
       </div>
     );
   },
-
-  
 });
-
 
 module.exports = HeaderButton;

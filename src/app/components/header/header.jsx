@@ -9,24 +9,23 @@ var HeaderButton = require('./header-button.jsx');
 var Header = React.createClass({
 
   render: function() {
+      var containerStyle = {
+          width    : '100%',
+          height   : '100%',
+          padding  : '12px 20px',
+      };
 
-    var containerStyle = {
-        width    : '100%',
-        height   : '100%',
-        padding  : '12px 20px',
-    };
-
-    return (
-      <header className="top-header">
-        <Paper style={containerStyle} zDepth={1} >
-          <div className="left header-block"><Logo /></div>
-          <div className="right header-block">
-            <HeaderButton />
-            <User user="Liang Yeh" />
-          </div>
-        </Paper>
-      </header>
-    );
+      return (
+        <header className="top-header">
+          <Paper style={containerStyle} zDepth={1} >
+            <div className="left header-block"><Logo /></div>
+            <div className="right header-block">
+              <HeaderButton />
+              <User />
+            </div>
+          </Paper>
+        </header>
+      );
   },
 
   

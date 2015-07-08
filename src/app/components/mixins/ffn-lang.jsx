@@ -5,14 +5,15 @@ var Config = require('../../config/config-lang');
 var mLang = {};
 
 module.exports = {
+
   childContextTypes: {
       lang : React.PropTypes.object
   },
 
   getChildContext: function() {
-    return {
-        lang : mLang
-    };
+      return {
+          lang : mLang
+      };
   },
 
   getInitialState: function () {
@@ -27,7 +28,7 @@ module.exports = {
   },
 
   _updateLangPack : function() {
-    console.warn('還沒做更新語言包的部份!!!');
+      console.warn('還沒做更新語言包的部份!!!');
   }
 
 };
